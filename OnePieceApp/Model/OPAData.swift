@@ -2,7 +2,7 @@
 //  OPAData.swift
 //  OnePieceApp
 //
-//  Created by Stelio Bastos on 24/06/21.
+//  Created by Atila Bastos on 24/06/21.
 //
 
 import Foundation
