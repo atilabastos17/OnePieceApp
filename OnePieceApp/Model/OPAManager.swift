@@ -48,11 +48,13 @@ struct OPAManager {
         do {
             let decodedData = try decoder.decode(OPAData.self, from: data)
             
+            // Decoding the informations that I found relevant to show
             let chapter = decodedData.chapter
             let title = decodedData.title
             let summary = decodedData.summary
             let characters = decodedData.characters
             
+            // Storing it on a constant to return the correct type of the function
             let chapterInfo = OPAModel(chapter: chapter, title: title, summary: summary, characters: characters)
             return chapterInfo
             

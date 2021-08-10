@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct OPAModel {
     let chapter: String
     let title: String
