@@ -133,7 +133,7 @@ extension OPAViewController: UITableViewDataSource {
         }
         
         // Adjusting the cell's alpha to make the background appear.
-        cell.alpha = 0.05
+        cell.backgroundColor = .init(white: 1.0, alpha: 0.5)
         
         return cell
     }
@@ -156,11 +156,12 @@ extension OPAViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableViewDataSource
+//MARK: - UITableViewDelegate
 
 extension OPAViewController: UITableViewDelegate {
     // Method used to automatic adjust the tableview cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
 }
