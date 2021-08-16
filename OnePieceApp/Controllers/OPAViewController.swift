@@ -9,11 +9,9 @@ import UIKit
 
 class OPAViewController: UIViewController {
     
-    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     var opaManager = OPAManager()
-    
     let searchController = UISearchController()
     
     // Creating only one cell I don't need to initialize the array with a lot of strings.
@@ -23,7 +21,6 @@ class OPAViewController: UIViewController {
         super.viewDidLoad()
         
         searchController.searchBar.delegate = self
-        searchTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         opaManager.delegate = self
@@ -33,42 +30,9 @@ class OPAViewController: UIViewController {
     }
     
     func setupSearchBar() {
+        searchController.searchBar.tintColor = .black
         navigationItem.searchController = searchController
-    }
-    
-}
-
-//MARK: - UITextFieldDelegate
-
-extension OPAViewController: UITextFieldDelegate {
-    
-    @IBAction func searchPressed(_ sender: UIButton) {
-        searchTextField.endEditing(true)
-        // Making the array empty when another request been made.
-        chapterInformation = []
         
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchTextField.endEditing(true)
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {
-            return true
-        } else {
-            textField.placeholder = "You must type a chapter number"
-            return false
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let chapter = searchTextField.text {
-            opaManager.getChapterNumber(for: chapter)
-        }
-        
-        searchTextField.text = ""
     }
     
 }
@@ -78,7 +42,6 @@ extension OPAViewController: UITextFieldDelegate {
 extension OPAViewController: OPAManagerDelegate {
     
     func didUpdateChapter(_ opaManager: OPAManager, chapterNumberInfo: OPAModel) {
-        
         // Storing the chapter info from the delegate method on a constant and putting it inside the array
         let newChapterInfo = OPAModel(chapter: chapterNumberInfo.chapter, title: chapterNumberInfo.title, summary: chapterNumberInfo.summary, characters: chapterNumberInfo.characters)
         
@@ -170,7 +133,16 @@ extension OPAViewController: UITableViewDelegate {
 
 extension OPAViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Dismissing the keyboard and end editing the Search Bar
+        searchController.searchBar.resignFirstResponder()
+        searchController.searchBar.endEditing(true)
         chapterInformation = []
+    }
+
+    // Method add to dismiss the keyboard when the Cancel button is pressed
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.resignFirstResponder()
+        searchController.searchBar.endEditing(true)
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -186,8 +158,6 @@ extension OPAViewController: UISearchBarDelegate {
         if let chapter = searchBar.text {
             opaManager.getChapterNumber(for: chapter)
         }
-        
         searchBar.text = ""
     }
-    
 }
