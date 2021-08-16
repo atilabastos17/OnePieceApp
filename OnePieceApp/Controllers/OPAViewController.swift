@@ -14,7 +14,7 @@ class OPAViewController: UIViewController {
     
     var opaManager = OPAManager()
     
-    //let searchController = UISearchController()
+    let searchController = UISearchController()
     
     // Creating only one cell I don't need to initialize the array with a lot of strings.
     var chapterInformation: [OPAModel] = []
@@ -22,19 +22,19 @@ class OPAViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupSearchBar()
-        
+        searchController.searchBar.delegate = self
         searchTextField.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         opaManager.delegate = self
         
+        setupSearchBar()
+        
     }
     
-//    FUTURE IMPROVEMENT
-//    func setupSearchBar() {
-//        navigationItem.searchController = searchController
-//    }
+    func setupSearchBar() {
+        navigationItem.searchController = searchController
+    }
     
 }
 
@@ -162,6 +162,32 @@ extension OPAViewController: UITableViewDelegate {
     // Method used to automatic adjust the tableview cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+}
+
+//MARK: - UISearchBarDelegate
+
+extension OPAViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        chapterInformation = []
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if searchBar.text != "" {
+            return true
+        } else {
+            searchBar.placeholder = "You must type a chapter number"
+            return false
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if let chapter = searchBar.text {
+            opaManager.getChapterNumber(for: chapter)
+        }
+        
+        searchBar.text = ""
     }
     
 }
