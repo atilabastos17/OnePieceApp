@@ -1,18 +1,17 @@
 //
-//  ViewController.swift
+//  OPASummaryViewController.swift
 //  OnePieceApp
 //
-//  Created by Atila Bastos on 24/06/21.
+//  Created by Atila Bastos on 20/08/21.
 //
 
 import UIKit
 
-class OPAViewController: UIViewController {
+class OPASummaryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var opaManager = OPAManager()
-    let searchController = UISearchController()
+    var chapterRequested: OPAModel?
     
     // Creating only one cell I don't need to initialize the array with a lot of strings.
     var chapterInformation: [OPAModel] = []
@@ -20,48 +19,27 @@ class OPAViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchController.searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        opaManager.delegate = self
         
-        setupSearchBar()
-        
+        loadChapter()
     }
     
-    func setupSearchBar() {
-        searchController.searchBar.tintColor = .black
-        navigationItem.searchController = searchController
-        
-    }
-    
-}
-
-//MARK: - OPAManagerDelegate
-
-extension OPAViewController: OPAManagerDelegate {
-    
-    func didUpdateChapter(_ opaManager: OPAManager, chapterNumberInfo: OPAModel) {
-        // Storing the chapter info from the delegate method on a constant and putting it inside the array
-        let newChapterInfo = OPAModel(chapter: chapterNumberInfo.chapter, title: chapterNumberInfo.title, summary: chapterNumberInfo.summary, characters: chapterNumberInfo.characters)
-        
-        self.chapterInformation.append(newChapterInfo)
+    func loadChapter() {
+        if chapterRequested != nil {
+            chapterInformation.append(chapterRequested ?? OPAModel(chapter: "", title: "", summary: "", characters: ""))
+        }
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-
-    }
-    
-    func didFailWithError(_ opaManager: OPAManager, error: Error) {
-        print(error)
     }
     
 }
 
 //MARK: - UITableViewDataSource
 
-extension OPAViewController: UITableViewDataSource {
+extension OPASummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Returning the number of cells based on how many items are inside the array
         return chapterInformation.count
@@ -121,43 +99,10 @@ extension OPAViewController: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 
-extension OPAViewController: UITableViewDelegate {
+extension OPASummaryViewController: UITableViewDelegate {
     // Method used to automatic adjust the tableview cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-}
-
-//MARK: - UISearchBarDelegate
-
-extension OPAViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // Dismissing the keyboard and end editing the Search Bar
-        searchController.searchBar.resignFirstResponder()
-        searchController.searchBar.endEditing(true)
-        chapterInformation = []
-    }
-
-    // Method add to dismiss the keyboard when the Cancel button is pressed
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchController.searchBar.resignFirstResponder()
-        searchController.searchBar.endEditing(true)
-    }
-    
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        if searchBar.text != "" {
-            return true
-        } else {
-            searchBar.placeholder = "You must type a chapter number"
-            return false
-        }
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        if let chapter = searchBar.text {
-            opaManager.getChapterNumber(for: chapter)
-        }
-        searchBar.text = ""
-    }
 }

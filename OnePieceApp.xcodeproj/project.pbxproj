@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7830AB6B26D01A9700BE4CFF /* OPASummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7830AB6A26D01A9700BE4CFF /* OPASummaryViewController.swift */; };
 		78E4147A26844B9600A8182D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4147926844B9600A8182D /* AppDelegate.swift */; };
 		78E4147C26844B9600A8182D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4147B26844B9600A8182D /* SceneDelegate.swift */; };
-		78E4147E26844B9600A8182D /* OPAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4147D26844B9600A8182D /* OPAViewController.swift */; };
+		78E4147E26844B9600A8182D /* OPASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E4147D26844B9600A8182D /* OPASearchViewController.swift */; };
 		78E4148126844B9600A8182D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78E4147F26844B9600A8182D /* Main.storyboard */; };
 		78E4148326844B9900A8182D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78E4148226844B9900A8182D /* Assets.xcassets */; };
 		78E4148626844B9900A8182D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78E4148426844B9900A8182D /* LaunchScreen.storyboard */; };
@@ -19,10 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7830AB6A26D01A9700BE4CFF /* OPASummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPASummaryViewController.swift; sourceTree = "<group>"; };
 		78E4147626844B9600A8182D /* OnePieceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePieceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E4147926844B9600A8182D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78E4147B26844B9600A8182D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		78E4147D26844B9600A8182D /* OPAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPAViewController.swift; sourceTree = "<group>"; };
+		78E4147D26844B9600A8182D /* OPASearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPASearchViewController.swift; sourceTree = "<group>"; };
 		78E4148026844B9600A8182D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78E4148226844B9900A8182D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78E4148526844B9900A8182D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,7 +79,8 @@
 		78E4148E2684604D00A8182D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				78E4147D26844B9600A8182D /* OPAViewController.swift */,
+				78E4147D26844B9600A8182D /* OPASearchViewController.swift */,
+				7830AB6A26D01A9700BE4CFF /* OPASummaryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,8 +173,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7830AB6B26D01A9700BE4CFF /* OPASummaryViewController.swift in Sources */,
 				78E4149826846D7100A8182D /* OPAData.swift in Sources */,
-				78E4147E26844B9600A8182D /* OPAViewController.swift in Sources */,
+				78E4147E26844B9600A8182D /* OPASearchViewController.swift in Sources */,
 				78E4147A26844B9600A8182D /* AppDelegate.swift in Sources */,
 				78E414922684640C00A8182D /* OPAManager.swift in Sources */,
 				78E4149B26846FF600A8182D /* OPAModel.swift in Sources */,
