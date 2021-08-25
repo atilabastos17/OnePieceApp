@@ -16,21 +16,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="XgC-q8-6eY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-1" translatesAutoresizingMaskIntoConstraints="NO" id="XgC-q8-6eY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a chapter number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gsr-nX-5Vv">
                                 <rect key="frame" x="20" y="310.5" width="374" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="3uZ-s9-6Mn"/>
                                 </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNi-32-lJ9">
-                                <rect key="frame" x="157.5" y="513" width="99" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="157.5" y="473" width="99" height="50"/>
+                                <color key="backgroundColor" red="0.67843137254901964" green="0.48627450980392156" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="okk-iR-HVK"/>
                                 </constraints>
@@ -46,7 +47,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.4624098539" green="0.22793698309999999" blue="0.3040115833" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fNi-32-lJ9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="90" id="2fJ-Uz-T2x"/>
+                            <constraint firstItem="fNi-32-lJ9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="2fJ-Uz-T2x"/>
                             <constraint firstItem="fNi-32-lJ9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="33y-DW-cpR"/>
                             <constraint firstItem="Gsr-nX-5Vv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="3Dz-u0-hF8"/>
                             <constraint firstItem="Gsr-nX-5Vv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LYm-6u-G8W"/>
@@ -60,6 +61,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="uSS-C4-obU"/>
                     <connections>
+                        <outlet property="searchButton" destination="fNi-32-lJ9" id="iqU-VA-QEH"/>
                         <outlet property="searchTextField" destination="Gsr-nX-5Vv" id="mah-M6-i2e"/>
                         <segue destination="sNV-PF-x8H" kind="show" identifier="searchToSummary" id="kr3-00-lFE"/>
                     </connections>
@@ -76,7 +78,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Wdh-Dr-J0E">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-1" translatesAutoresizingMaskIntoConstraints="NO" id="Wdh-Dr-J0E">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AH3-c1-mUU">
@@ -137,7 +139,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="810" height="1440"/>
+        <image name="background-1" width="810" height="1440"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

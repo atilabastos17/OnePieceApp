@@ -10,6 +10,7 @@ import UIKit
 class OPASearchViewController: UIViewController {
     
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     
     var opaManager = OPAManager()
     var model: OPAModel?
@@ -18,6 +19,20 @@ class OPASearchViewController: UIViewController {
         super.viewDidLoad()
         
         opaManager.delegate = self
+        
+        // Customizing the search button
+        searchButton.layer.cornerRadius = 10
+        searchButton.clipsToBounds = true
+        searchButton.backgroundColor = UIColor.brown.withAlphaComponent(0.75)
+        
+        // Customizing the searchTextField
+        searchTextField.layer.cornerRadius = 10
+        searchTextField.clipsToBounds = true
+        searchTextField.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Enter a chapter number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        let myColor: UIColor = UIColor.white
+        searchTextField.layer.borderColor = myColor.cgColor
+        searchTextField.layer.borderWidth = 1.0
         
     }
     
@@ -30,9 +45,9 @@ class OPASearchViewController: UIViewController {
                 opaManager.getChapterNumber(for: chapter)
             }
             // Changing the placeholder text after a succesful search
-            searchTextField.placeholder = "Enter a chapter number"
+            searchTextField.attributedPlaceholder = NSAttributedString(string: "Enter a chapter number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         } else {
-            searchTextField.placeholder = "You must type a chapter number"
+            searchTextField.attributedPlaceholder = NSAttributedString(string: "You must type a chapter number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         }
         
         // Making the searchTextField empty after a search
