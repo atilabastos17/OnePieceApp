@@ -47,6 +47,20 @@ class OPASearchViewController: UIViewController {
         
     }
     
+    func loadingOverlayShow() {
+        let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func loadingOverlayDismiss() {
+        dismiss(animated: false, completion: nil)
+    }
+    
     @IBAction func searchPressed(_ sender: UIButton) {
         searchTextField.endEditing(true)
         
@@ -54,6 +68,9 @@ class OPASearchViewController: UIViewController {
         if searchTextField.text != "" {
             if let chapter = searchTextField.text {
                 opaManager.getChapterNumber(for: chapter)
+            }
+            DispatchQueue.main.async {
+                self.loadingOverlayShow()
             }
             // Changing the placeholder text after a succesful search
             searchTextField.attributedPlaceholder = NSAttributedString(string: "Enter a chapter number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
@@ -89,6 +106,7 @@ extension OPASearchViewController: OPAManagerDelegate {
         // Making the performSegue after the API request is done and my model is filled with the data from the request
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "searchToSummary", sender: self)
+            self.loadingOverlayDismiss()
         }
     }
     
