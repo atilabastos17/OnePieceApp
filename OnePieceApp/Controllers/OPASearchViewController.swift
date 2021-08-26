@@ -20,16 +20,27 @@ class OPASearchViewController: UIViewController {
         
         opaManager.delegate = self
         
+        setupButton()
+        setupSearchBar()
+    }
+    
+    func setupButton() {
         // Customizing the search button
         searchButton.layer.cornerRadius = 10
         searchButton.clipsToBounds = true
         searchButton.backgroundColor = UIColor.brown.withAlphaComponent(0.75)
-        
+    }
+    
+    func setupSearchBar() {
         // Customizing the searchTextField
         searchTextField.layer.cornerRadius = 10
         searchTextField.clipsToBounds = true
         searchTextField.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        
+        // Code for customize the placeholder
         searchTextField.attributedPlaceholder = NSAttributedString(string: "Enter a chapter number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        
+        // Code for customize the UITextField border
         let myColor: UIColor = UIColor.white
         searchTextField.layer.borderColor = myColor.cgColor
         searchTextField.layer.borderWidth = 1.0

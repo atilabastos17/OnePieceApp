@@ -25,18 +25,15 @@ class OPASummaryViewController: UIViewController {
         loadChapter()
     }
     
-    
     // Function to load the chapter's information received from the user's input. Is called on viewDidLoad and check if the information is empty or not
     func loadChapter() {
         if let chapter = chapterRequested {
             chapterInformation.append(chapter)
         }
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
 }
 
 //MARK: - UITableViewDataSource
