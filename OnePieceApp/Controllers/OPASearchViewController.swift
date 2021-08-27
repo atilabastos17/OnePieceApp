@@ -20,8 +20,30 @@ class OPASearchViewController: UIViewController {
         
         opaManager.delegate = self
         
+        setupAddTargetIsNotEmptyTextField()
         setupButton()
         setupSearchBar()
+    }
+    
+    // Setting the method to hidden the search button if is empty
+    func setupAddTargetIsNotEmptyTextField() {
+        searchButton.isHidden = true // hidden the search button
+        
+        searchTextField.addTarget(self, action: #selector(textFieldIsNotEmpty), for: .editingChanged)
+    }
+    
+    // Selector method for the setupAddTarget
+    @objc func textFieldIsNotEmpty(sender: UITextField) {
+        sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+        
+        guard let search = searchTextField.text, !search.isEmpty
+        else {
+            self.searchButton.isHidden = true
+            return
+        }
+        // If the textField is not empty, then the button will appear
+        searchButton.isHidden = false
+        
     }
     
     func setupButton() {
@@ -80,6 +102,7 @@ class OPASearchViewController: UIViewController {
         
         // Making the searchTextField empty after a search
         searchTextField.text = ""
+        searchButton.isHidden = true
         
     }
     
